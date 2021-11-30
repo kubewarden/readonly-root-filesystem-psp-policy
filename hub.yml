@@ -8,9 +8,12 @@ download:
   # Important: leave the __TAG__ around: this is automatically replaced with the value of the git tag
   registry: ghcr.io/kubewarden/policies/readonly-root-filesystem-psp-policy:__TAG__
   # url is optional
-  url: https://github.com/yourorg/readonly-root-filesystem-psp-policy/releases/download/__TAG__/policy.wasm
+  url: https://github.com/kubewarden/readonly-root-filesystem-psp-policy/releases/download/__TAG__/policy.wasm
 keywords:
-  - this is freeform
+  - PSP
+  - Container
+  - filesystem
+  - Volume
 resources:
   - Pod
 mutation: false

@@ -1,35 +1,37 @@
-Please, note well: this file and the scaffold were generated from [a
-template](https://github.com/kubewarden/policy-rust-template). Make
-this project yours!
+Continuous integration | License
+ -----------------------|--------
+![Continuous integration](https://github.com/kubewarden/readonly-root-filesystem-psp-policy/workflows/Continuous%20integration/badge.svg) | [![License: Apache 2.0](https://img.shields.io/badge/License-Apache2.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
-# Kubewarden policy readonly-root-filesystem-psp-policy
 
-## Description
+This Kubewarden Policy is a replacement for the Kubernetes Pod Security Policy
+that enforces the usage of [`ReadOnlyRootFilesystems`](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems).
 
-This policy will reject pods that have a name `invalid-pod-name`. If
-the pod to be validated has a different name, or if a different type
-of resource is evaluated, it will be accepted.
+# How the policy works
 
-## Settings
+The policy inspects the `securityContext` of each container defined inside of
+a Pod and ensures all the containers have the `readOnlyRootFilesystem` attribute
+set to `true`.
 
-This policy has no configurable settings. This would be a good place
-to document if yours does, and what behaviors can be configured by
-tweaking them.
+The policy checks the both the `pod.spec.containers` and the init containers
+too.
 
-## License
+Containers that do not have a `securityContext` defined are rejected too.
+That happens because, by default, the root filesystem of a container is
+considered to be writable.
 
-```
-Copyright (C) 2021 Flavio Castelli <fcastelli@suse.com>
+Ephemeral containers are not checked because, by Kubernetes definition, they
+cannot have a `securityContext`.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+# Configuration
 
-   http://www.apache.org/licenses/LICENSE-2.0
+The policy doesn't have any configuration.
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
+# Obtain policy
+
+The policy is automatically published as an OCI artifact inside of
+[this](https://github.com/orgs/kubewarden/packages/container/package/policies%2Freadonly-root-filesystem-psp-policy)
+container registry.
+
+# Using the policy
+
+The easiest way to use this policy is through the [kubewarden-controller](https://github.com/kubewarden/kubewarden-controller).
