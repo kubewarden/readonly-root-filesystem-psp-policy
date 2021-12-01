@@ -2,18 +2,32 @@ rules:
 - apiGroups: [""]
   apiVersions: ["v1"]
   resources: ["pods"]
-  operations: ["CREATE"]
+  operations: ["CREATE", "UPDATE"]
 mutating: false
 contextAware: false
 executionMode: kubewarden-wapc
 annotations:
   io.kubewarden.policy.title: readonly-root-filesystem-psp-policy
-  io.kubewarden.policy.description: Short description
+  io.kubewarden.policy.description: Enforce all the containers to have a readonly root filesystem
   io.kubewarden.policy.author: Flavio Castelli <fcastelli@suse.com>
-  io.kubewarden.policy.url: https://github.com/yourorg/readonly-root-filesystem-psp-policy
-  io.kubewarden.policy.source: https://github.com/yourorg/readonly-root-filesystem-psp-policy
+  io.kubewarden.policy.url: https://github.com/kubewarden/readonly-root-filesystem-psp-policy
+  io.kubewarden.policy.source: https://github.com/kubewarden/readonly-root-filesystem-psp-policy
   io.kubewarden.policy.license: Apache-2.0
   io.kubewarden.policy.usage: |
-    Long explaination.
+    The policy inspects the `securityContext` of each container defined inside of
+    a Pod and ensures all the containers have the `readOnlyRootFilesystem` attribute
+    set to `true`.
 
-    **Note well:** this can be Markdown text
+    The policy checks the both the `pod.spec.containers` and the init containers
+    too.
+
+    Containers that do not have a `securityContext` defined are rejected too.
+    That happens because, by default, the root filesystem of a container is
+    considered to be writable.
+
+    Ephemeral containers are not checked because, by Kubernetes definition, they
+    cannot have a `securityContext`.
+
+    ## Configuration
+
+    The policy doesn't have any configuration.
