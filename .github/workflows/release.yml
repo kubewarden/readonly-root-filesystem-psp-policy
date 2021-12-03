@@ -29,7 +29,7 @@ jobs:
     needs: test
     env:
       WASM_BINARY_NAME: readonly_root_filesystem_psp_policy
-      OCI_TARGET: ghcr.io/kubewarden/policies/readonly-root-filesystem-psp-policy
+      OCI_TARGET: ghcr.io/kubewarden/policies/readonly-root-filesystem-psp
       METADATA_FILE: metadata.yml
       KWCTL_VERSION: v0.1.9
     steps:
