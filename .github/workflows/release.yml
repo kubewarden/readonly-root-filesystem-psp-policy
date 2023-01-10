@@ -26,5 +26,4 @@ jobs:
     with:
       input-wasm: readonly_root_filesystem_psp_policy
       oci-target: ghcr.io/${{ github.repository_owner }}/policies/readonly-root-filesystem-psp
-    secrets:
-      workflow-pat: ${{ secrets.WORKFLOW_PAT }}
+
