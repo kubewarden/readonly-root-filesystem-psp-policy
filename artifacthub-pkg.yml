@@ -4,16 +4,16 @@
 #
 # This config can be saved to its default location with:
 #   kwctl scaffold artifacthub > artifacthub-pkg.yml 
-version: 1.0.1
+version: 1.0.2
 name: readonly-root-filesystem-psp
 displayName: Readonly Root Filesystem PSP
-createdAt: 2025-05-12T20:05:45.482987045Z
+createdAt: 2025-07-09T10:08:19.965540136Z
 description: A Kubewarden policy that enforces root filesystem to be readonly
 license: Apache-2.0
 homeURL: https://github.com/kubewarden/readonly-root-filesystem-psp-policy
 containersImages:
 - name: policy
-  image: ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.1
+  image: ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.2
 keywords:
 - psp
 - container
@@ -21,17 +21,17 @@ keywords:
 - volume
 links:
 - name: policy
-  url: https://github.com/kubewarden/readonly-root-filesystem-psp-policy/releases/download/v1.0.1/policy.wasm
+  url: https://github.com/kubewarden/readonly-root-filesystem-psp-policy/releases/download/v1.0.2/policy.wasm
 - name: source
   url: https://github.com/kubewarden/readonly-root-filesystem-psp-policy
 install: |
   The policy can be obtained using [`kwctl`](https://github.com/kubewarden/kwctl):
   ```console
-  kwctl pull ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.1
+  kwctl pull ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.2
   ```
   Then, generate the policy manifest and tune it to your liking. For example:
   ```console
-  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.1
+  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.2
   ```
 maintainers:
 - name: Kubewarden developers
